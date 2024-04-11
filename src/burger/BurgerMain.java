@@ -39,7 +39,7 @@ public class BurgerMain {
 
         System.out.println("1.버거 선택\t\t2.버거 삭제");
         System.out.println("3.사이드 추가\t\t4.사이드 삭제");
-        System.out.println("5.내 상품\t\t6.전체 비우기");
+        System.out.println("5.내 상품6.전체 비우기");
         System.out.println("7.영수증 출력\t\t8.관리자 로그인");
         System.out.println("9.종료");
         System.out.print("메뉴를 선택해주세요 >>");
