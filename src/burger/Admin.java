@@ -1,12 +1,19 @@
 package burger;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.Objects;
 
 public class Admin {
-    private String id = "admin";
-    private String password = "admin";
-    public Admin()  {
-
+    private String id;
+    private String password;
+    public Admin() {
+        try(BufferedReader br = new BufferedReader(new FileReader("admin.txt"))) {
+            id = br.readLine();
+            password = br.readLine();
+        }catch (Exception e)    {
+            System.out.println("admin 오류");
+        }
     }
 
     public String getId() {
