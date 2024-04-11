@@ -38,9 +38,9 @@ public class BurgerMain {
     public static int selectMenu() {
 
         System.out.println("1.버거 선택\t\t2.버거 삭제");
-        System.out.println("3.사이드 추가\t4.사이드 삭제");
+        System.out.println("3.사이드 추가\t\t4.사이드 삭제");
         System.out.println("5.내 상품\t\t6.전체 비우기");
-        System.out.println("7.영수증 출력\t8.관리자 로그인");
+        System.out.println("7.영수증 출력\t\t8.관리자 로그인");
         System.out.println("9.종료");
         System.out.print("메뉴를 선택해주세요 >>");
         while (!sc.hasNextInt())    {
@@ -235,26 +235,7 @@ public class BurgerMain {
         LocalDateTime now = LocalDateTime.now();
         System.out.println(now.getYear()+"년 "+now.getMonthValue()+"월 "+now.getDayOfMonth()+"일 "+now.getHour()+"시 "
                 +now.getMinute()+"분 "+now.getSecond()+"초");
-        int total=0;
-        if (myBurgers.isEmpty())    {
-            System.out.println("선택하신 버거가 없습니다.");
-        } else {
-            System.out.println("버거");
-            for (MyBurger mb : myBurgers)   {
-                System.out.println(mb);
-                total += mb.getPrice();
-            }
-        }
-        if (mySides.isEmpty())  {
-            System.out.println("추가하신 사이드가 없습니다.");
-        } else {
-            System.out.println("사이드");
-            for (MySide ms : mySides)   {
-                System.out.println(ms);
-                total += ms.getPrice();
-            }
-        }
-        System.out.println(total+"원");
+        showAll();
     }
     public static void admin()  {
         Admin admin = new Admin();
