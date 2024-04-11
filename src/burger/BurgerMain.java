@@ -43,7 +43,7 @@ public class BurgerMain {
         System.out.println("7.영수증 출력\t\t8.관리자 로그인");
         System.out.println("9.종료");
         System.out.print("메뉴를 선택해주세요 >>");
-        while (!sc.hasNextInt())    {
+        while (!sc.hasNextInt()|| sc.hasNext("0"))    {
             sc.next();
             System.out.println("숫자를 입력해주세요");
             System.out.print("메뉴를 선택해주세요 >>");
@@ -59,7 +59,7 @@ public class BurgerMain {
         }
         System.out.print("버거를 선택해주세요(뒤로가기 -1): ");
 
-        while (!sc.hasNextInt() || !sc.hasNextInt(burgers.size()+1)) {
+        while (!sc.hasNextInt() || !sc.hasNextInt(burgers.size()+1) || sc.hasNext("0")) {
             sc.next();
             System.out.println("숫자를 입력해주세요");
             System.out.print("버거를 선택해주세요(뒤로가기 -1): ");
@@ -75,7 +75,7 @@ public class BurgerMain {
         System.out.print("사이즈업/세트를 선택해주세요: ");
 
 
-        while (!sc.hasNextInt() || !(sc.hasNextInt(5))) {
+        while (!sc.hasNextInt() || !(sc.hasNextInt(5))|| sc.hasNext("0")) {
             sc.next();
             System.out.println("숫자를 입력해주세요");
             System.out.print("사이즈업/세트를 선택해주세요: ");
@@ -145,7 +145,7 @@ public class BurgerMain {
             System.out.println(mb);
         }
         System.out.print("삭제하실 버거를 선택해주세요(뒤로가기 -1): ");
-        while (!sc.hasNextInt() || !sc.hasNextInt(myBurgers.size()+1))    {
+        while (!sc.hasNextInt() || !sc.hasNextInt(myBurgers.size()+1)|| sc.hasNext("0"))    {
             sc.next();
             System.out.println("숫자를 입력해주세요");
             System.out.print("삭제하실 버거를 선택해주세요(뒤로가기 -1): ");
@@ -165,7 +165,7 @@ public class BurgerMain {
             System.out.println(s);
         }
         System.out.print("추가하실 사이드의 번호를 입력해주세요(뒤로가기 -1): ");
-        while (!sc.hasNextInt() || !sc.hasNextInt(sides.size()+1))    {
+        while (!sc.hasNextInt() || !sc.hasNextInt(sides.size()+1)|| sc.hasNext("0"))    {
             sc.next();
             System.out.println("숫자를 입력해주세요");
             System.out.print("추가하실 사이드의 번호를 입력해주세요(뒤로가기 -1): ");
@@ -189,7 +189,7 @@ public class BurgerMain {
             System.out.println(ms);
         }
         System.out.print("삭제하실 사이드를 선택해주세요(뒤로가기 -1): ");
-        while (!sc.hasNextInt() || !sc.hasNextInt(mySides.size()+1))    {
+        while (!sc.hasNextInt() || !sc.hasNextInt(mySides.size()+1)|| sc.hasNext("0"))    {
             sc.next();
             System.out.println("숫자를 입력해주세요");
             System.out.print("삭제하실 사이드를 선택해주세요(뒤로가기 -1): ");
@@ -252,7 +252,7 @@ public class BurgerMain {
                 System.out.println("관리자 접속 완료");
                 while (true)    {
                     System.out.print("1.버거 목록 추가\t2.사이드 목록 추가(뒤로가기 -1): ");
-                    while (!sc.hasNextInt() || !sc.hasNextInt(3))    {
+                    while (!sc.hasNextInt() || !sc.hasNextInt(3)|| sc.hasNext("0"))    {
                         sc.next();
                         System.out.println("숫자를 입력해주세요");
                         System.out.print("1.버거 목록 추가\t2.사이드 목록 추가(뒤로가기 -1): ");
@@ -270,7 +270,7 @@ public class BurgerMain {
                             }
                             while (true){
                                 System.out.print("중복되지 않는 코드번호를 입력해주세요(ex:1,2,3): ");
-                                while (!sc.hasNextInt())    {
+                                while (!sc.hasNextInt()|| sc.hasNext("0"))    {
                                     sc.next();
                                     System.out.println("숫자를 입력해주세요");
                                     System.out.print("중복되지 않는 코드번호를 입력해주세요(ex:1,2,3): ");
@@ -287,7 +287,7 @@ public class BurgerMain {
                             String name = sc.nextLine();
                             pw1.println(name);
                             System.out.print("가격을 입력해주세요: ");
-                            while (!sc.hasNextInt())    {
+                            while (!sc.hasNextInt()|| sc.hasNext("0"))    {
                                 sc.next();
                                 System.out.println("숫자를 입력해주세요");
                                 System.out.print("가격을 입력해주세요: ");
@@ -312,7 +312,7 @@ public class BurgerMain {
                             }
                             while (true){
                                 System.out.print("중복되지 않는 코드번호를 입력해주세요(ex:1,2,3): ");
-                                while (!sc.hasNextInt())    {
+                                while (!sc.hasNextInt()|| sc.hasNext("0"))    {
                                     sc.next();
                                     System.out.println("숫자를 입력해주세요");
                                     System.out.print("중복되지 않는 코드번호를 입력해주세요(ex:1,2,3): ");
@@ -329,7 +329,7 @@ public class BurgerMain {
                             String name = sc.nextLine();
                             pw2.println(name);
                             System.out.print("가격을 입력해주세요: ");
-                            while (!sc.hasNextInt())    {
+                            while (!sc.hasNextInt()|| sc.hasNext("0"))    {
                                 sc.next();
                                 System.out.println("숫자를 입력해주세요");
                                 System.out.print("가격을 입력해주세요: ");
