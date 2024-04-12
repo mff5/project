@@ -237,8 +237,7 @@ public class BurgerMain {
         System.out.println("삭제가 완료되었습니다.");
     }
     public static boolean receipt()    {
-        try(Socket client = new Socket("localhost",8000);
-                PrintWriter pw = new PrintWriter(new OutputStreamWriter(client.getOutputStream()))) {
+
             LocalDateTime now = LocalDateTime.now();
             System.out.println(now.getYear()+"년 "+now.getMonthValue()+"월 "+now.getDayOfMonth()+"일 "+now.getHour()+"시 "
                     +now.getMinute()+"분 "+now.getSecond()+"초");
@@ -246,35 +245,33 @@ public class BurgerMain {
 
             int total = 0;
 
-            if (!myBurgers.isEmpty())   {
-                pw.println("버거");
-                for (MyBurger mb : myBurgers)   {
-                    pw.println(mb.toString2());
-                    total += mb.getPrice();
-                }
-            }
-
-            if (!mySides.isEmpty())   {
-                pw.println("사이드");
-                for (MySide ms : mySides)   {
-                    pw.println(ms.toString2());
-                    total += ms.getPrice();
-                }
-            }
             if (!myBurgers.isEmpty() || !mySides.isEmpty()) {
-                pw.println(total+"원");
-                pw.flush();
+                try(Socket client = new Socket("localhost",8000);
+                    PrintWriter pw = new PrintWriter(new OutputStreamWriter(client.getOutputStream()))){
+                    if (!myBurgers.isEmpty())   {
+                        pw.println("버거");
+                        for (MyBurger mb : myBurgers)   {
+                            pw.println(mb.toString2());
+                            total += mb.getPrice();
+                        }
+                    }
+
+                    if (!mySides.isEmpty())   {
+                        pw.println("사이드");
+                        for (MySide ms : mySides)   {
+                            pw.println(ms.toString2());
+                            total += ms.getPrice();
+                        }
+                    }
+                    pw.println(total+"원");
+                    pw.flush();
+                } catch (Exception e)   {
+                    System.out.println("예외 발생");
+                }
+                return true;
             }
 
-
-
-            if (myBurgers.isEmpty() && mySides.isEmpty())   {
-                return false;
-            }
-        } catch (Exception e)   {
-            System.out.println("예외 발생2");
-        }
-        return true;
+        return false;
     }
     public static void admin()  {
         Admin admin = new Admin();
