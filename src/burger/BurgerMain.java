@@ -243,9 +243,10 @@ public class BurgerMain {
                     +now.getMinute()+"분 "+now.getSecond()+"초");
             showAll();
 
-            int total = 0;
+
 
             if (!myBurgers.isEmpty() || !mySides.isEmpty()) {
+                int total = 0;
                 try(Socket client = new Socket("localhost",8000);
                     PrintWriter pw = new PrintWriter(new OutputStreamWriter(client.getOutputStream()))){
                     if (!myBurgers.isEmpty())   {
@@ -266,7 +267,7 @@ public class BurgerMain {
                     pw.println(total+"원");
                     pw.flush();
                 } catch (Exception e)   {
-                    System.out.println("예외 발생");
+                    System.out.println("예외 발생1");
                 }
                 return true;
             }
