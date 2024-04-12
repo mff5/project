@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Scanner;
 
+@SuppressWarnings("OptionalGetWithoutIsPresent")
 public class BurgerMain {
     public static int myBurgerNum = 1;
     public static int mySideNum = 1;
