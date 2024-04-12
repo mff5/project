@@ -1,3 +1,5 @@
 # 프로젝트 제외 경로
 /out/
 admin.txt
+burgers.txt
+sides.txt
