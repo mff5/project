@@ -34,6 +34,9 @@ public class MySide extends Side implements Serializable {
     public int hashCode() {
         return Objects.hash(super.hashCode(), orderNum);
     }
+    public String toString2()   {
+        return getSdName() +"\t"+getPrice()+"원";
+    }
 
     @Override
     public String toString() {

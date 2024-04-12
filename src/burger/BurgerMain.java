@@ -243,17 +243,30 @@ public class BurgerMain {
             System.out.println(now.getYear()+"년 "+now.getMonthValue()+"월 "+now.getDayOfMonth()+"일 "+now.getHour()+"시 "
                     +now.getMinute()+"분 "+now.getSecond()+"초");
             showAll();
+
+            int total = 0;
+
             if (!myBurgers.isEmpty())   {
-                String burger = myBurgers.toString();
-                pw.println(burger);
+                pw.println("버거");
+                for (MyBurger mb : myBurgers)   {
+                    pw.println(mb.toString2());
+                    total += mb.getPrice();
+                }
             }
 
             if (!mySides.isEmpty())   {
-                String side = mySides.toString();
-                pw.println(side);
+                pw.println("사이드");
+                for (MySide ms : mySides)   {
+                    pw.println(ms.toString2());
+                    total += ms.getPrice();
+                }
+            }
+            if (!myBurgers.isEmpty() || !mySides.isEmpty()) {
+                pw.println(total+"원");
+                pw.flush();
             }
 
-            pw.flush();
+
 
             if (myBurgers.isEmpty() && mySides.isEmpty())   {
                 return false;

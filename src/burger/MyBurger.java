@@ -35,6 +35,9 @@ public class MyBurger extends Burger implements Serializable {
         return Objects.hash(orderNum);
     }
 
+    public String toString2()  {
+        return getBgName()+"\t"+getPrice()+"원";
+    }
     @Override
     public String toString() {
         return "주문번호: " +getOrderNum()+"\t"+getBgName()+"\t"+getPrice()+"원"+"\t"+getInfo();
