@@ -1,6 +1,7 @@
 package burger;
 
 import java.io.*;
+import java.net.Socket;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -17,22 +18,26 @@ public class BurgerMain {
     public static void main(String[] args)  {
         boolean exit = false;
         while (!exit)    {
-            int num = selectMenu();
-            switch (num) {
-                case 1 -> selectBurger();
-                case 2 -> removeBurger();
-                case 3 -> selectSide();
-                case 4 -> removeSide();
-                case 5 -> showAll();
-                case 6 -> clearAll();
-                case 7 -> receipt();
-                case 8 -> admin();
-                case 9 -> {
-                    System.out.println("종료합니다.");
-                    exit = true;
+                int num = selectMenu();
+                switch (num) {
+                    case 1 -> selectBurger();
+                    case 2 -> removeBurger();
+                    case 3 -> selectSide();
+                    case 4 -> removeSide();
+                    case 5 -> showAll();
+                    case 6 -> clearAll();
+                    case 7 -> exit= receipt();
+                    case 8 -> admin();
+                    case 9 -> {
+                        System.out.println("종료합니다.");
+                        exit = true;
+                    }
+                    case 10 -> {
+                        systemOut();
+                        exit = true;
+                    }
+                    default -> System.out.println("다시 입력해주세요.");
                 }
-                default -> System.out.println("다시 입력해주세요.");
-            }
         }
     }
     public static int selectMenu() {
@@ -40,8 +45,8 @@ public class BurgerMain {
         System.out.println("1.버거 선택\t\t2.버거 삭제");
         System.out.println("3.사이드 추가\t\t4.사이드 삭제");
         System.out.println("5.내 상품\t\t6.전체 비우기");
-        System.out.println("7.영수증 출력\t\t8.관리자 로그인");
-        System.out.println("9.종료");
+        System.out.println("7.결제\t\t\t8.관리자 로그인");
+        System.out.println("9.종료\t\t\t10.시스템 종료");
         System.out.print("메뉴를 선택해주세요 >>");
         while (!sc.hasNextInt()|| sc.hasNext("0"))    {
             sc.next();
@@ -231,11 +236,32 @@ public class BurgerMain {
         mySides.clear();
         System.out.println("삭제가 완료되었습니다.");
     }
-    public static void receipt()    {
-        LocalDateTime now = LocalDateTime.now();
-        System.out.println(now.getYear()+"년 "+now.getMonthValue()+"월 "+now.getDayOfMonth()+"일 "+now.getHour()+"시 "
-                +now.getMinute()+"분 "+now.getSecond()+"초");
-        showAll();
+    public static boolean receipt()    {
+        try(Socket client = new Socket("localhost",8000);
+                PrintWriter pw = new PrintWriter(new OutputStreamWriter(client.getOutputStream()))) {
+            LocalDateTime now = LocalDateTime.now();
+            System.out.println(now.getYear()+"년 "+now.getMonthValue()+"월 "+now.getDayOfMonth()+"일 "+now.getHour()+"시 "
+                    +now.getMinute()+"분 "+now.getSecond()+"초");
+            showAll();
+            if (!myBurgers.isEmpty())   {
+                String burger = myBurgers.toString();
+                pw.println(burger);
+            }
+
+            if (!mySides.isEmpty())   {
+                String side = mySides.toString();
+                pw.println(side);
+            }
+
+            pw.flush();
+
+            if (myBurgers.isEmpty() && mySides.isEmpty())   {
+                return false;
+            }
+        } catch (Exception e)   {
+            System.out.println("예외 발생2");
+        }
+        return true;
     }
     public static void admin()  {
         Admin admin = new Admin();
@@ -382,6 +408,16 @@ public class BurgerMain {
             }
         } catch (Exception e)   {
             System.out.println("사이드목록 읽기 예외 발생");
+        }
+    }
+    public static  void systemOut() {
+        try(Socket client = new Socket("localhost",8000);
+        PrintWriter pw = new PrintWriter(new OutputStreamWriter(client.getOutputStream()))) {
+            pw.println("exit");
+
+            pw.flush();
+        } catch (Exception e)   {
+            System.out.println("예외 발생2");
         }
     }
 }
