@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://kit.fontawesome.com/b345dcbb9c.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            width: 1200px;
+            height: 1030px;
+            margin: 0 auto;
+            overflow-x: hidden
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+            font-weight: 900;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        header {
+            height: 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            position: relative;
+        }
+
+        header i {
+            font-size: 80px;
+            position: absolute;
+            left: 5%;
+            top: 10%;
+        }
+
+        header > ul {
+            display: flex;
+            position: relative;
+        }
+
+        header > ul > li > a {
+            color: hotpink;
+        }
+
+
+        nav {
+            width: 100%;
+            height: auto;
+            position: relative;
+        }
+
+        nav > ul {
+            height: auto;
+            position: relative;
+            top: 16px;
+        }
+
+        nav > ul > li {
+            border-bottom: 2px solid white;
+            display: inline-block;
+        }
+
+        nav > ul > li:hover > a {
+            color: hotpink;
+        }
+
+        li:hover > div.content {
+            display: block;
+        }
+
+        div.content > a:hover {
+            color: hotpink;
+        }
+
+        li > a {
+            display: block;
+            padding: 10px 15px;
+        }
+
+        div.content {
+            background-color: white;
+            position: absolute;
+            display: none;
+            margin-top: 2px;
+            z-index: 10;
+        }
+
+        div.content > a {
+            display: block;
+            padding: 15px;
+        }
+
+        nav > ul > li.menu:hover {
+            border-bottom: 2px solid hotpink;
+        }
+
+
+        li.member {
+            float: right;
+            font-size: 13px;
+            margin-right: 10px;
+            padding: 0;
+        }
+
+        li.member > a {
+            border: 2px solid hotpink;
+            border-radius: 50px;
+            color: hotpink;
+        }
+
+        li.member > a:hover {
+            color: black;
+            border: 2px solid black;
+        }
+
+        header > ul > li > a:hover {
+            color: black;
+        }
+
+
+
+
+
+
+
+        section {
+            width: 1200px;
+            position: relative;
+            height: 700px;
+            border-bottom: 2px solid rgb(194, 194, 194);
+            border-top: 2px solid rgb(194, 194, 194);
+            text-align: center;
+        }
+
+
+        div.slideshow{
+            margin-top: 90px;
+            height: 465px;
+            min-width: 960px;
+            position: relative;
+        }
+        div.slideshow_slides{
+            position: absolute;
+            width: 1200px;
+            height: 500px;
+        }
+        div.slideshow_slides a{
+            display: inline-block;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        div.slideshow_nav a{
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            font-size: 65px;
+            color: hotpink;
+            transform: translate(-50%, -50%);
+            opacity: 0.3;
+        }
+        #a_left {
+            margin-left: -462px;
+        }
+        #a_right {
+            margin-left: 400px;
+        }
+
+        div.indicator{
+            position: absolute;
+            left: 50%;
+            bottom: 5px;
+            color: black;
+            transform: translateX(-50%);
+        }
+        div.indicator a{
+            display: inline-block;
+            font-size: 20px;
+            color: black;
+            padding: 5px;
+            opacity: 0.3;
+        }
+        div.indicator a.active{
+            color: hotpink;
+        }
+        iframe{
+            width: 100%;
+            height: 100% ;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+            border: none;
+        }
+
+
+
+
+
+
+
+
+
+
+
+        footer{
+            font-size: 14px;
+        }
+        footer>div:nth-child(1)    {
+            padding: 10px 100px 10px 100px;
+            border-bottom: 2px solid rgb(194, 194, 194);
+        }
+        .foot1{
+            display: flex;
+        }
+        .foot1>a{
+            margin-right: 10px;
+        }
+        .foot2{
+            display: flex;
+            flex-direction: column;
+            margin-top: 5px;
+        }
+        .foot2>p{
+            padding-top: 5px;
+            margin-left: 100px;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+        #frames {
+            display: none;
+        }
+    </style>
+    <script>
+        function signIn() {
+            const slideshow = document.querySelector(".slideshow");
+            slideshow.style.visibility = "hidden";
+
+
+            const frames = document.querySelector("#frames");
+            frames.style.display = "block";
+            frames.src = "./SignIn.html";
+        }
+        function login() {
+            const slideshow = document.querySelector(".slideshow");
+            slideshow.style.visibility = "hidden";
+            const frames = document.querySelector("#frames");
+            frames.style.display = "block";
+            frames.src = "./Login.html";
+        }
+        function call_js() {
+            let slideshow = document.querySelector(".slideshow");
+            let slideshow_slides = document.querySelector(".slideshow_slides");
+            let slides = document.querySelectorAll(".slideshow_slides a");
+
+            let a_left =document.querySelector("#a_left");
+            let a_right = document.querySelector("#a_right");
+
+            let indicators = document.querySelectorAll(".indicator a");
+
+
+            let timer = null;
+
+            for (let i=0; i < slides.length; i++ ){
+                let newLeft=i*150+"%";
+                slides[i].style.left = newLeft;
+            }
+
+
+            function goToSlide(index) {
+                let newLeft = index * -150 + '%';
+                slideshow_slides.style.left = newLeft;
+                indicators.forEach(e => {
+                    e.classList.remove('active');
+                })
+                indicators[index].classList.add('active');
+            }
+
+
+
+            function startTimer() {
+                index = 0;
+                timer = setInterval(()=> {
+                    goToSlide(index);
+                    index += 1;
+                    if (index > slides.length-1)   {
+                        index = 0;
+                    }
+                },2000);
+            }
+
+            startTimer();
+
+
+
+            slideshow_slides.addEventListener("mouseenter",()=>{
+                clearInterval(timer);
+            });
+            slideshow_slides.addEventListener("mouseleave",()=>{
+                startTimer();
+            });
+
+
+
+            a_left.addEventListener("mouseenter",()=>{
+                clearInterval(timer);
+            });
+            a_right.addEventListener("mouseleave",()=>{
+                clearInterval(timer);
+            });
+
+
+            a_left.addEventListener("click",(e)=>{
+                e.preventDefault();
+                index -= 1;
+                if (index < 0)  {
+                    index = slides.length - 1;
+                }
+                goToSlide(index)
+            });
+            a_right.addEventListener("click",(e)=>{
+                e.preventDefault();
+                index += 1;
+                if (index > slides.length - 1)  {
+                    index = 0;
+                }
+                goToSlide(index)
+            });
+
+            indicators.forEach((e)=>{
+                e.addEventListener("mouseenter",(e)=>{
+                    clearInterval(timer);
+                });
+            });
+
+            for (let i=0;i<indicators.length;i++)   {
+                indicators[i].addEventListener("click", (e)=>{
+                    e.preventDefault();
+                    goToSlide(i);
+                });
+            }
+        }
+
+    </script>
+    
+</head>
+
+<body onload="call_js()">
+<header>
+    <a href="./main.html"><i class="fa-brands fa-html5"></i></a>
+    <ul>
+        <li class="menu"><a href="./main.html" class="drop">Home</a></li>
+        <li class="menu"><a href="#" class="drop">Sitemap</a></li>
+    </ul>
+
+</header>
+<nav>
+    <ul>
+        <li class="menu">
+            <a href="./main.html" class="drop">Home</a>
+        </li>
+        <li class="menu">
+            <a href="./all.html" class="drop">전체</a>
+        </li>
+        <li class="menu">
+            <a href="#" class="drop">Eyelash</a>
+            <div class="content">
+                <a href="#">No Glue</a>
+                <a href="#">Tidy</a>
+                <a href="#">B Line</a>
+                <a href="#">A Line</a>
+                <a href="#">X Line</a>
+            </div>
+        </li>
+        <li class="menu">
+            <a href="#" class="drop">Brush</a>
+            <div class="content">
+                <a href="#">Rich Gold</a>
+                <a href="#">Pearl Vanilla</a>
+                <a href="#">Black Label</a>
+            </div>
+        </li>
+        <li class="menu">
+            <a href="#" class="drop">etc</a>
+            <div class="content">
+                <a href="#">Pencil</a>
+                <a href="#">Spatula</a>
+                <a href="#">Tweezer</a>
+                <a href="#">Case</a>
+            </div>
+        </li>
+        <li class="menu">
+            <a href="#" class="drop">Search</a>
+        </li>
+
+        <li class="member">
+            <a href="#" class="drop" onclick="signIn()">SignIn</a>
+        <li class="member">
+            <a href="#" class="drop" onclick="login()">Login</a>
+        </li>
+        <li class="member">
+            <a href="#" class="drop">Cart</a>
+        </li>
+
+
+    </ul>
+</nav>
+<section>
+    <div class="slideshow">
+        <div class="slideshow_slides">
+            <a href="#"><img src="./brush1.jpg" alt="브러쉬1"></a>
+            <a href="#"><img src="./brush2.jpg" alt="브러쉬2"></a>
+            <a href="#"><img src="./brush3.jpg" alt="브러쉬3"></a>
+            <a href="#"><img src="./brush4.jpg" alt="브러쉬4"></a>
+        </div>
+        <div class="slideshow_nav">
+            <a href="#" id="a_left"><i class="fa-solid fa-angles-left"></i></a>
+            <a href="#" id="a_right"><i class="fa-solid fa-angles-right"></i></a>
+        </div>
+        <div class="indicator">
+            <a href="#" class="active"><i class="fa-solid fa-circle-dot"></i></a>
+            <a href="#"><i class="fa-solid fa-circle-dot"></i></a>
+            <a href="#"><i class="fa-solid fa-circle-dot"></i></a>
+            <a href="#"><i class="fa-solid fa-circle-dot"></i></a>
+        </div>
+    </div>
+    <iframe id="frames"></iframe>
+</section>
+<footer>
+    <div class="foot1">
+        <a href="#">회사소개</a>
+        <a href="#">이용약관</a>
+        <a href="#">개인정보처리방침</a>
+        <a href="#">고객센터</a>
+    </div>
+    <div class="foot2">
+        <p>주소 : </p>
+        <p>대표전화번호 : </p>
+        <p>사업자등록번호 : </p>
+        <p>Copyright@</p>
+    </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://kit.fontawesome.com/b345dcbb9c.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            width: 1200px;
+            height: auto;
+            margin: 0 auto;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+            font-weight: 900;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        header {
+            height: 10%;
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            align-items: end;
+        }
+
+        header i {
+            font-size: 80px;
+            position: absolute;
+            left: 5%;
+            top: 10%;
+        }
+
+        header > ul {
+            display: flex;
+            position: relative;
+        }
+
+        header > ul > li > a {
+            color: hotpink;
+        }
+
+
+
+        nav {
+            width: 100%;
+            height: auto;
+            position: relative;
+        }
+
+        nav > ul {
+            height: auto;
+            position: relative;
+            top: 16px;
+        }
+
+        nav > ul > li {
+            border-bottom: 2px solid white;
+            display: inline-block;
+        }
+
+        nav > ul > li:hover > a {
+            color: hotpink;
+        }
+
+        li:hover > div.content {
+            display: block;
+        }
+
+        div.content > a:hover {
+            color: hotpink;
+        }
+
+        li > a {
+            display: block;
+            padding: 10px 15px;
+        }
+
+        div.content {
+            background-color: white;
+            position: absolute;
+            display: none;
+            margin-top: 2px;
+            z-index: 10;
+        }
+
+        div.content > a {
+            display: block;
+            padding: 15px;
+        }
+
+        nav > ul > li.menu:hover {
+            border-bottom: 2px solid hotpink;
+        }
+        header > ul > li > a:hover {
+            color: black;
+        }
+        li.member {
+            float: right;
+            font-size: 13px;
+            margin-right: 10px;
+            padding: 0;
+        }
+
+        li.member > a {
+            border: 2px solid hotpink;
+            border-radius: 50px;
+            color: hotpink;
+        }
+
+        li.member > a:hover {
+            color: black;
+            border: 2px solid black;
+        }
+
+
+
+
+
+
+
+
+        section{
+            width: 100%;
+        }
+        div.center{
+            border-top: 2px solid rgb(194, 194, 194);
+            border-bottom: 2px solid rgb(194, 194, 194);
+        }
+        span.bold{
+            font-weight: bold;
+        }
+        span.discount{
+            color:  #504EB3;
+            font-weight: 900;
+        }
+        span.price{
+            font-weight: 900;
+        }
+        span.etc{
+            text-decoration: line-through;
+            font-weight: 900;
+            color: gray;
+        }
+
+
+
+
+
+
+        footer{
+            font-size: 14px;
+        }
+        footer>div:nth-child(1)    {
+            padding: 10px 100px 10px 100px;
+            border-bottom: 2px solid rgb(194, 194, 194);
+        }
+        .foot1{
+            display: flex;
+        }
+        .foot1>a{
+            margin-right: 10px;
+        }
+        .foot2{
+            display: flex;
+            flex-direction: column;
+            margin-top: 5px;
+        }
+        .foot2>p{
+            padding-top: 5px;
+            margin-left: 100px;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+        img{
+            overflow : hidden;
+        }
+        table img{
+            width: 280px;
+            height: 280px;
+        }
+    </style>
+    <script>
+        let signInWindow = null;
+        function signIn() {
+            if (signInWindow===null)  {
+                signInWindow = window.open("./SignIn.html","회원가입","width=1200px,height=900px");
+
+                signInWindow.open();
+            }
+        }
+
+        let loginWindow = null;
+        function login() {
+            if (loginWindow===null)  {
+                loginWindow = window.open("./login.html","로그인","width=500px,height=500px");
+
+                loginWindow.open();
+            }
+        }
+    </script>
+</head>
+<body>
+<header>
+    <a href="./main.html"><i class="fa-brands fa-html5"></i></a>
+    <ul>
+        <li class="menu"><a href="./main.html" class="drop">Home</a></li>
+        <li class="menu"><a href="#" class="drop">Sitemap</a></li>
+    </ul>
+
+</header>
+<nav>
+    <ul>
+        <li class="menu">
+            <a href="./main.html" class="drop">Home</a>
+        </li>
+        <li class="menu">
+            <a href="#" class="drop">전체</a>
+        </li>
+        <li class="menu">
+            <a href="#" class="drop">Eyelash</a>
+            <div class="content">
+                <a href="#">No Glue</a>
+                <a href="#">Tidy</a>
+                <a href="#">B Line</a>
+                <a href="#">A Line</a>
+                <a href="#">X Line</a>
+            </div>
+        </li>
+        <li class="menu">
+            <a href="#" class="drop">Brush</a>
+            <div class="content">
+                <a href="#">Rich Gold</a>
+                <a href="#">Pearl Vanilla</a>
+                <a href="#">Black Label</a>
+            </div>
+        </li>
+        <li class="menu">
+            <a href="#" class="drop">etc</a>
+            <div class="content">
+                <a href="#">Pencil</a>
+                <a href="#">Spatula</a>
+                <a href="#">Tweezer</a>
+                <a href="#">Case</a>
+            </div>
+        </li>
+        <li class="menu">
+            <a href="#" class="drop">Search</a>
+        </li>
+
+        <li class="member">
+            <a href="#" class="drop" onclick="signIn()">SignIn</a>
+        <li class="member">
+            <a href="#" class="drop" onclick="login()">Login</a>
+        </li>
+
+        <li class="member">
+            <a href="#" class="drop">Cart</a>
+        </li>
+    </ul>
+</nav>
+<section>
+    <div class="center">
+
+
+        <h2>전체</h2><br><br>
+        <span>총<b style="color: #504EB3">16</b>건</span>
+        <div style="text-align: right">
+            <a href="#">판매량순</a> |
+            <a href="#">낮은가격순</a> |
+            <a href="#">높은가격순</a> |
+            <a href="#">상품후기순</a> |
+            <a href="#">신상품순</a>
+            <select name="" id="">
+                <option value="">20개씩 보기</option>
+                <option value="">40개씩 보기</option>
+                <option value="">60개씩 보기</option>
+                <option value="">80개씩 보기</option>
+            </select>
+        </div>
+        <table style="margin: 50px auto; width: 1000px">
+            <tr>
+                <td class="product"><a href="#"><img src="./img/1.%20X%20Line.jpg" alt="브러쉬1"></a></td>
+                <td class="product"><a href="#"><img src="./img/2.%20A%20Line.jpg" alt="브러쉬1"></a></td>
+                <td class="product"><a href="#"><img src="./img/3.%20B%20Line.png" alt="브러쉬1"></a></td>
+                <td class="product"><a href="#"><img src="./img/4.%20Tidy.png" alt="브러쉬1"></a></td>
+            </tr>
+            <tr>
+                <td class="price"><span class="bold">X Line</span><br><span class="discount">50% </span><span class="price">2,400원 </span><span class="etc">4,800원</span></td>
+                <td class="price"><span class="bold">A Line</span><br><span class="discount">50% </span><span class="price">2,400원 </span><span class="etc">4,800원</span></td>
+                <td class="price"><span class="bold">B Line</span><br><span class="discount">50% </span><span class="price">2,400원 </span><span class="etc">4,800원</span></td>
+                <td class="price"><span class="bold">Tidy</span><br><span class="discount">50% </span><span class="price">2,400원 </span><span class="etc">4,800원</span></td>
+            </tr>
+            <tr>
+                <td class="product"><a href="#"><img src="./img/5.%20No%20Glue.png" alt="브러쉬1"></a></td>
+                <td class="product"><a href="#"><img src="./img/6.%20Rich%20Gold.png" alt="브러쉬1"></a></td>
+                <td class="product"><a href="#"><img src="./img/7.%20Pearl%20Vanilla.png" alt="브러쉬1"></a></td>
+                <td class="product"><a href="#"><img src="./img/8.%20Black%20Label.jpg" alt="브러쉬1"></a></td>
+            </tr>
+            <tr>
+                <td class="price"><span class="bold">No Glue</span><br><span class="discount">20% </span><span class="price">4,700원 </span><span class="etc">5,900원</span></td>
+                <td class="price"><span class="bold">Rich Gold</span><br><span class="discount">25% </span><span class="price">19,000원 </span><span class="etc">25,500원</span></td>
+                <td class="price"><span class="bold">Pearl Vanilla</span><br><span class="discount">25% </span><span class="price">27,000원 </span><span class="etc">36,000원</span></td>
+                <td class="price"><span class="bold">Black Label</span><br><span class="discount">25% </span><span class="price">21,000원 </span><span class="etc">28,000원</span></td>
+            </tr>
+            <tr>
+                <td class="product"><a href="#"><img src="./img/9.%20Pencil.png" alt="브러쉬1"></a></td>
+                <td class="product"><a href="#"><img src="./img/10.%20Spatula.png" alt="브러쉬1"></a></td>
+                <td class="product"><a href="#"><img src="./img/11.%20Tweezer.png" alt="브러쉬1"></a></td>
+                <td class="product"><a href="#"><img src="./img/12.%20Case%201100원.png" alt="브러쉬1"></a></td>
+            </tr>
+            <tr>
+                <td class="price"><span class="bold">Pencil</span><br><span class="discount">44% </span><span class="price">5,500원 </span><span class="etc">9,900원</span></td>
+                <td class="price"><span class="bold">Spatula</span><br><span class="discount"></span><span class="price">18,300원 </span><span class="etc"></span></td>
+                <td class="price"><span class="bold">Tweezer</span><br><span class="discount"></span><span class="price">15,100원 </span><span class="etc"></span></td>
+                <td class="price"><span class="bold">Case</span><br><span class="discount"></span><span class="price">1,100원 </span><span class="etc"></span></td>
+            </tr>
+            <tr>
+                <td class="product"><a href="#"><img src="./img/13.%20Air%20Puff.png" alt="브러쉬1"></a></td>
+                <td class="product"><a href="#"><img src="./img/14.%203p-라텍스.png" alt="브러쉬1"></a></td>
+                <td class="product"><a href="#"><img src="./img/15.%20Pad.png" alt="브러쉬1"></a></td>
+                <td class="product"><a href="#"><img src="./img/16.%20C%20Line.png" alt="브러쉬1"></a></td>
+            </tr>
+            <tr>
+                <td class="price"><span class="bold">Air Puff</span><br><span class="discount">50% </span><span class="price">2,500원 </span><span class="etc">5,000원</span></td>
+                <td class="price"><span class="bold">3p Latex</span><br><span class="discount"></span><span class="price">9,900원 </span><span class="etc"></span></td>
+                <td class="price"><span class="bold">Cosmetic Pad</span><br><span class="discount">50% </span><span class="price">2,500원 </span><span class="etc">5,000원</span></td>
+                <td class="price"><span class="bold">C Line</span><br><span class="discount">50% </span><span class="price">2,400원 </span><span class="etc">4,800원</span></td>
+            </tr>
+        </table>
+
+    </div>
+</section>
+<footer>
+    <div class="foot1">
+        <a href="#">회사소개</a>
+        <a href="#">이용약관</a>
+        <a href="#">개인정보처리방침</a>
+        <a href="#">고객센터</a>
+    </div>
+    <div class="foot2">
+        <p>주소 : </p>
+        <p>대표전화번호 : </p>
+        <p>사업자등록번호 : </p>
+        <p>Copyright@</p>
+    </div>
+</footer>
+
+</body>
+</html>

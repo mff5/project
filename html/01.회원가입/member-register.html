@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="./member-register.css">
+    <link rel="stylesheet" href="member-register.css">
+</head>
+<body>
+    <h1>회원가입</h1>
+    <hr>
+    <form action="#" method="post">
+        <h3>사이트 이용정보 입력</h3>
+        <table>
+            <tr>
+                <td class="title">
+                    <label for="memberId">아이디</label>
+                </td>
+                <td class="content"><span>영문자, 숫자,_만 입력가능. 최소3자이상 입력하세요</span><br>
+                    <input class="request" type="text" name="memberId" id="memberId" size="25" minlength="3"
+                           maxlength="12" required placeholder="아이디입력" value="">
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <label for="password">비밀번호</label>
+                </td>
+                <td class="content"><span>영문자, 숫자, 특수문자를 포함하여 6~12자를 입력하세요</span><br>
+                    <input class="request" type="password" name="password" id="password" size="25" minlength="6"
+                           maxlength="12" required placeholder="비밀번호입력" value="">
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <label for="passwordCheck">비밀번호 확인</label>
+                </td>
+                <td class="content"><span>영문자, 숫자,_만 입력가능. 최소3자이상 입력하세요</span><br>
+                    <input class="request" type="password" name="passwordCheck" id="passwordCheck" size="25"
+                           minlength="3" maxlength="12" required placeholder="비밀번호 확인" value="">
+                </td>
+            </tr>
+        </table>
+
+        <br>
+        <h3>개인정보 입력</h3>
+        <table>
+            <tr>
+                <td class="title">
+                    <label for="name">이름</label>
+                </td>
+                <td class="content">
+                    <input class="request" type="text" name="name" id="name">
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <label for="nickname">닉네임</label>
+                </td>
+                <td class="content">
+                    <span>공백없이 한글,영문,숫자만 입력가능 (한글2자, 영문4자 이상)<br>
+                    &nbsp;&nbsp;&nbsp;닉네임을 바꾸시면 앞으로 1일 이내에는 변경할 수 없습니다.</span><br>
+                    <input class="request" type="text" name="nickname" id="nickname">
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <label for="email">E-mail</label>
+                </td>
+                <td class="content">
+                    <input class="request" type="text" name="email" id="email">
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <label>가입경로</label>
+                </td>
+                <td class="rara">
+                    <input type="radio" name="route" id="route1">인터넷검색
+                    <input type="radio" name="route" id="route2">배너광고
+                    <input type="radio" name="route" id="route3">관련기사를보고
+                    <input type="radio" name="route" id="route4">미라지홈페이지보고
+                    <input type="radio" name="route" id="route5">주변사람소개
+                    <input type="radio" name="route" id="route6">기타
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <label for="num">전화번호</label>
+                </td>
+                <td class="content">
+                    <input class="request" type="text" name="num" id="num">
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <label for="phoneNum">휴대폰번호</label>
+                </td>
+                <td class="content">
+                    <input class="request" type="text" name="phoneNum" id="phoneNum">
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <label for="birth">생년월일</label>
+                </td>
+                <td class="content">
+                    <input type="date" name="birth" id="birth">
+                </td>
+            </tr>
+            <tr>
+                <td class="title"><label for="address">주소</label></td>
+                <td class="content">
+                    <input class="request" type="text" name="address" id="address">
+                    <button class="search" type="submit">주소검색</button>
+                    <br>
+                    <input class="request" type="text" name="" id="1"
+                    size="80"> <span>기본주소</span> <br>
+                    <input type="text" name="" id="2" size="80"> <span>상세주소</span> <br>
+                    <input type="text" name="" id="3" size="80"> <span>참고항목</span> <br>
+                </td>
+            </tr>
+        </table>
+
+        <br>
+        <h3>기타 개인설정</h3>
+        <table>
+            <tr>
+                <td class="title">
+                    <label for="kakao">카카오톡 메세지</label>
+                </td>
+                <td class="content">
+                    <div>
+                        <input type="checkbox" name="kakao" id="kakao">카카오톡 메세지를 받겠습니다.
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <label for="mailing">메일링서비스</label>
+                </td>
+                <td class="content">
+                    <div>
+                        <input type="checkbox" name="mailing" id="mailing">정보 메일을 받겠습니다.
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <label for="sms">SMS 수신여부</label>
+                </td>
+                <td class="content">
+                    <div>
+                        <input type="checkbox" name="sms" id="sms">휴대폰 문자메세지를 받겠습니다.
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <label for="inform">정보공개</label>
+                </td>
+                <td class="content">
+                    <span>정보공개를 바꾸시면 앞으로 10일 이내에는 변경이 안됩니다.</span><br>
+                    <div>
+                        <input type="checkbox" name="inform" id="inform"> 다른분들이 나의 정보를 볼 수 있도록 합니다.
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <label for="auto">자동등록방지</label>
+                </td>
+                <td class="content">
+                    <div>
+                        <img src="./num.PNG" alt="오류사진">
+                        <button type="submit">코드 생성</button>
+                        <input class="request" type="text" name="auto" id="auto">
+                        <button type="submit">비교</button>
+                    </div>
+                    <span>자동등록방지 문자와 숫자를 순서대로 입력해 주세요</span>
+                </td>
+            </tr>
+        </table>
+        <div class="last">
+            <button class="pink" type="submit">회원가입</button>
+            <button type="submit">취소</button>
+        </div>
+
+    </form>
+</body>
+</html>

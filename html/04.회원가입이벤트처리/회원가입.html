@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>회원가입/로그인</title>
+    <style>
+        h1 {
+            width: 80%;
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        #fffff {
+            margin-left: 24%;
+            color: #FF542A;
+        }
+
+        div {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        p {
+            width: 800px;
+            border-top: 1px solid #E2E2E2;
+            border-bottom: 1px solid #E2E2E2;
+            padding: 20px 0;
+            margin: 0 auto;
+        }
+
+        #oneone {
+            width: 80%;
+            margin: 20px auto 0 auto;
+        }
+
+        table {
+            width: 800px;
+            border-collapse: collapse;
+            margin: 0 auto;
+            border: none;
+        }
+
+        td {
+            border-top: 1px solid #E2E2E2;
+            padding: 10px 0 10px 10px;
+        }
+
+        table td.td1 {
+            width: 30%;
+            background-color: #F8F8F8;
+            font-size: 1em;
+        }
+
+        table td.td2 {
+            width: 70%;
+        }
+
+        span.asdf {
+            font-size: 14px;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        div.second > form {
+            margin-top: 30px;
+            width: 510px;
+            margin-left: 21%;
+        }
+
+        div.yep {
+            display: flex;
+        }
+
+        div.sero {
+            display: flex;
+            flex-direction: column;
+        }
+
+        div.second > form > div > div > input {
+            width: 300px;
+            height: 30px;
+            margin-bottom: 5px;
+        }
+
+        button#redd {
+            background-color: #EE1D0E;
+            color: white;
+            width: 100px;
+            height: 75px;
+
+        }
+
+        #llast {
+            margin-top: 10px;
+            margin-left: 24.5%;
+        }
+
+        #last1 {
+            background-color: white;
+            color: black;
+            width: 100px;
+        }
+
+        #last2 {
+            background-color: white;
+            color: black;
+            width: 100px;
+
+        }
+
+        #last3 {
+            background-color: gray;
+            color: white;
+            width: 100px;
+        }
+
+        div.second span {
+            font-size: 12px;
+        }
+
+        h2 {
+            margin-left: 50px;
+        }
+
+        #pc {
+            visibility: hidden;
+        }
+
+        .you:hover ~ #pc {
+            visibility: visible;
+        }
+
+        .you:checked ~ #pc {
+            visibility: visible;
+        }
+
+    </style>
+    <script>
+
+        function userPwCheck() {
+            const userPw = document.querySelector("#userPw");
+            const userPwInfo = document.querySelector("#userPwInfo");
+            let exp = /^[a-zA-Z0-9!@#$%^&*]{4,12}$/;
+            if (userPw.value.match(exp)) {
+                userPwInfo.innerHTML = "";
+                return true;
+            }else {
+                userPwInfo.innerHTML = "4~12자리의 영문,숫자,특수문자(!, @, $, %, ^, &,*)로 입력해주세요";
+                return false;
+            }
+
+
+        }
+
+        function userPwOkCheck() {
+            const userPw = document.querySelector("#userPw");
+            const userPwOk = document.querySelector("#userPwOk");
+            const userPwOkInfo = document.querySelector("#userPwOkInfo");
+
+            if (userPw.value === userPwOk.value) {
+                userPwOkInfo.innerHTML = "";
+                return true;
+            }  else {
+                userPwOkInfo.innerHTML = `비밀번호가 일치하지 않습니다.`;
+                return false;
+            }
+
+        }
+
+        function userNameCheck() {
+            const userName = document.querySelector("#userName");
+            const userNameInfo = document.querySelector("#userNameInfo");
+
+            if (userName.value.includes(" ")) {
+                userNameInfo.innerHTML = "띄어쓰기는 허용되지 않습니다";
+                return false;
+            } else {
+                userNameInfo.innerHTML = "";
+                return true;
+            }
+        }
+
+        function userEmailCheck() {
+            const userEmail = document.querySelector("#userEmail");
+            const userEmailInfo = document.querySelector("#userEmailInfo");
+            let exp = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i;
+
+            if (userEmail.value.match(exp)) {
+                userEmailInfo.innerHTML = "";
+                return true;
+            } else {
+                userEmailInfo.innerHTML = `올바른 이메일 주소를 입력해주세요.<br>`;
+            }
+        }
+
+
+        function allCheck(event) {
+            if (userPwCheck() && userPwOkCheck() && userNameCheck() && userEmailCheck()) {
+                alert("회원가입완료");
+                return true;
+            } else {
+                alert("가입내용이 문제가 있습니다. 다시 입력해주세요.");
+                event.preventDefault();
+                return false;
+            }
+        }
+
+
+        function checkIdPw(event) {
+            const userIdEmail = document.querySelector("#userIdEmail");
+            const userPassword = document.querySelector("#userPassword");
+
+            if ((userIdEmail.value === "") || (userPassword.value === "")) {
+                alert("아이디/비밀번호를 입력해주세요");
+                event.preventDefault();
+                return false;
+            } else {
+                alert("로그인 성공");
+                return true;
+            }
+        }
+
+
+    </script>
+</head>
+<body>
+<h1>회원가입</h1>
+<div>
+    <span id="fffff">●</span><span><b>온라인 회원가입 작성</b></span>
+    <p>고객님의 정보는 개인정보보호정책에 의해 철저하게 보호됩니다.</p>
+</div>
+<form id="oneone" action="#" method="post">
+    <table>
+        <tr>
+            <td class="td1"><label for="userId"></label>사용자ID<span style="color: red ;font-size: 20px"> *</span></td>
+            <td class="td2"><input type="text" name="userId" id="userId" required><input type="button" value="ID 중복확인"
+                                                                                         style="margin-left: 5px"></td>
+        </tr>
+        <tr>
+            <td class="td1"><label for="userPw"></label>비밀번호<span style="color: red ;font-size: 20px"> *</span></td>
+            <td class="td2"><input type="password" name="userPw" id="userPw" maxlength="12" onkeyup="userPwCheck()"
+                                   required><span class="asdf"> ·4~12자리의 영문,숫자,특수문자(!, @, $, %, ^, &,*)만 가능</span>
+                <span id="userPwInfo" style="color: red; text-align: left"></span>
+            </td>
+        </tr>
+        <tr>
+            <td class="td1"><label for="userPwOk">비밀번호 확인</label><span style="color: red ;font-size: 20px"> *</span>
+            </td>
+            <td class="td2"><input type="password" name="" id="userPwOk" maxlength="12" onkeyup="userPwOkCheck()"
+                                   required>
+                <span id="userPwOkInfo" style="color: red"></span></td>
+        </tr>
+        <tr>
+            <td class="td1"><label for="userName"></label>성명<span style="color: red ;font-size: 20px"> *</span></td>
+            <td class="td2"><input type="text" name="userName" id="userName" required onkeyup="userNameCheck()"> <span
+                    class="asdf">·띄어쓰기 없이 입력, 반드시 실명이어야 합니다!</span><br>
+                <span id="userNameInfo" style="color: red"></span></td>
+        </tr>
+        <tr>
+            <td class="td1"><label for="userEmail"></label>E-mail<span style="color: red ;font-size: 20px"> *</span>
+            </td>
+            <td class="td2"><input type="email" name="userEmail" id="userEmail" size="35" required
+                                   onkeyup="userEmailCheck()">
+                <span><b>메일 수신여부</b></span><br>
+                <span id="userEmailInfo" style="color: red"></span>
+                <span class="asdf">·<b>할인 이벤트정보</b> 및 할인쿠폰, 관심분야 등 꼭 필요한 정보를 빠르게 받아보실 수 있습니다.</span><br>
+                <span class="asdf">·비밀번호 분실시 E-mail로 확인해 드리니, <span
+                        style="color: #11797E"><b>정확한 E-mail주소를 기입</b></span>해주세요;</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="td1"><label for="userPost"></label>우편번호<span style="color: red ;font-size: 20px"> *</span></td>
+            <td class="td2"><input type="text" name="userPost" id="userPost" size="5" required>-<input type="text"
+                                                                                                       name="userPost2"
+                                                                                                       id="userPost2"
+                                                                                                       size="5"
+                                                                                                       required>
+                <input type="button" value="우편번호 검색"></td>
+        </tr>
+        <tr>
+            <td class="td1"><label for="address">주소</label><span style="color: red ;font-size: 20px"> *</span></td>
+            <td class="td2">
+                <input type="text" name="address" id="address" size="50" required><br>
+                <input type="text" name="address" id="address2" size="50" required><br>
+            </td>
+        </tr>
+        <tr>
+            <td class="td1"><label for="phoneNum"></label>휴대폰번호<span style="color: red ;font-size: 20px"> *</span></td>
+            <td class="td2"><input type="text" name="phoneNum" id="phoneNum" size="5" required>-<input type="text"
+                                                                                                       name="phoneNum2"
+                                                                                                       id="phoneNum2"
+                                                                                                       size="5"
+                                                                                                       required>-<input
+                    type="text" name="phoneNum3" id="phoneNum3" size="5" required>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align: center; border: none">
+                <button type="submit" onclick="allCheck()">다음</button>
+            </td>
+        </tr>
+    </table>
+</form>
+
+<div class="second">
+
+    <form id="second" action="#" method="post">
+        <h2>로그인</h2>
+        <div class="yep">
+            <div class="sero">
+                <input type="text" name="" id="userIdEmail" placeholder="아이디 or 이메일" required>
+                <input type="password" name="userPassword" id="userPassword" placeholder="비밀번호" required>
+
+            </div>
+            <button id="redd" type="submit" onclick="checkIdPw(event)"><b>로그인</b></button>
+
+        </div>
+
+
+        <div>
+            <input class="you" type="checkbox" name="ch01" id="ch01"><label class="you" for="ch01">로그인상태 유지</label>
+            <input type="checkbox" name="ch02" id="ch02"><label for="ch02">아이디 저장</label><br>
+            <span id="pc">개인정보보호를 위해 <span style="color: red">개인PC에서 사용해주세요.</span></span>
+        </div>
+    </form>
+    <div id="llast">
+        <button id="last1">아이디 찾기</button>
+        <button id="last2">비밀번호 찾기</button>
+        <button id="last3">회원가입</button>
+    </div>
+
+
+</div>
+</body>
+</html>

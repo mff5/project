@@ -1,0 +1,57 @@
+body{
+    margin:0px;
+    padding:0px;
+}
+h2{
+    text-align: center;
+}
+form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+form>fieldset   {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form>fieldset>div{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+td.row>button{
+    background-color: red;
+    color: white;
+    border-radius: 10px;
+    width: 60px;
+    height: 50px;
+    border: none;
+}
+div.save{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 10px;
+    width: 16%;
+
+}
+div.save>label{
+    margin-left: -10%;
+}
+div.save>a{
+    margin-right: -10%;
+}
+div.etc{
+    padding-top: 10px;
+}
+div.etc>button{
+    margin: 2px;
+}
+fieldset{
+    border: none;
+}

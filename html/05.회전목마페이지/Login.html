@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>로그인</title>
+    <style>
+        div.login{
+            margin: 0 auto;
+        }
+
+        div.login>form{
+            width: 510px;
+            margin: 0 auto;
+        }
+
+        div.upper {
+            display: flex;
+        }
+
+        div.sero {
+            display: flex;
+            flex-direction: column;
+        }
+
+        div.login > form > div > div > input {
+            width: 300px;
+            height: 30px;
+            margin-bottom: 5px;
+        }
+
+        button#redd{
+            background-color: red;
+            color: white;
+            width: 100px;
+            height: 75px;
+            margin-left: 5px;
+        }
+
+        #last1 {
+            background-color: white;
+            color: black;
+            width: 100px;
+        }
+
+        #last2 {
+            background-color: white;
+            color: black;
+            width: 100px;
+
+        }
+
+        #last3 {
+            background-color: gray;
+            color: white;
+            width: 100px;
+        }
+        div.upper>button{
+
+        }
+        div.login span{
+            font-size: 12px;
+        }
+        #lower{
+            margin-top: 10px;
+        }
+        h2{
+            margin-left: 35%;
+        }
+        #pc{
+            visibility: hidden;
+        }
+        .you:hover ~ #pc{
+            visibility: visible;
+        }
+        .you:checked ~ #pc{
+            visibility: visible;
+        }
+
+    </style>
+    <script>
+        function login() {
+            const loginForm = document.longinForm;
+            if (loginForm.userIdEmail.value==="" || loginForm.userIdEmail.value===null)   {
+                alert("아이디/이메일을 입력하세요");
+                loginForm.userIdEmail.focus();
+
+            }
+            if (loginForm.userPassword.value==="" || loginForm.userPassword.value===null)   {
+                alert("비밀번호를 입력하세요")
+                loginForm.userPassword.focus();
+            }
+            loginForm.submit();
+
+        }
+    </script>
+</head>
+<body>
+<div class="login">
+    <form action="#" id="login" method="post" name="longinForm">
+        <h2>로그인</h2>
+        <div class="upper">
+            <div class="sero">
+                <input type="text" name="userIdEmail" id="userIdEmail" placeholder="아이디 or 이메일">
+                <input type="password" name="userPassword" id="userPassword" placeholder="비밀번호">
+
+            </div>
+            <button id="redd" type="submit" onclick="login()">로그인</button>
+
+        </div>
+
+
+        <div>
+            <input class="you" type="checkbox" name="ch01" id="ch01"><label class="you" for="ch01" onclick="">로그인상태 유지</label>
+            <input type="checkbox" name="ch02" id="ch02"><label for="ch02">아이디 저장</label><br>
+            <span id="pc">개인정보보호를 위해 <span style="color: red">개인PC에서 사용해주세요.</span></span><br>
+        </div>
+
+        <div id="lower">
+            <button id="last1">아이디 찾기</button>
+            <button id="last2">비밀번호 찾기</button>
+            <button id="last3">회원가입</button>
+        </div>
+
+    </form>
+</div>
+</body>
+</html>

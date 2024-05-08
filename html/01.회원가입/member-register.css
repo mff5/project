@@ -1,0 +1,90 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+h1{
+    text-align: center;
+}
+form{
+    width: 80%;
+    padding: 10px;
+    margin: 0 auto;
+    height: 1800px;
+}
+table{
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid white;
+}
+td{
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+    border-left: 1px solid lightgray;
+}
+
+td.title{
+    text-align: center;
+    width: 10%;
+    padding-left: 5px;
+    border-left: 1px solid white;
+    background-color: #fff3e9;
+
+}
+td.content{
+    font-size: 12px;
+    width: 80%;
+    padding: 5px 5px 10px 5px;
+}
+td>span{
+    font-size: 8px;
+}
+input{
+    border: 1px solid lightgray;
+    margin: 8px;
+    height: 27px;
+    border-radius: 2px;
+    background-color: #f4f4f4;
+}
+input.request{
+    background-color: #f4f4f4;
+    background-image: url("./wrest.gif");
+    background-repeat: no-repeat;
+    background-position: top right;
+}
+button.search{
+    font-size: 15px;
+    background-color: black;
+    color: white;
+    border: none;
+}
+td.rara{
+    font-size: 12px;
+    width: 80%;
+    padding: 5px 5px 10px 5px;
+    display: flex;
+    align-items: center;
+}
+button.pink{
+    background-color: deeppink;
+    color: white;
+    border: none;
+}
+div.last{
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+div.last>button{
+    font-size: 20px;
+    margin-right: 10px;
+}
+td.content>div{
+    display: flex;
+    align-items: center;
+}
+td.content>span{
+    padding-left: 10px;
+    font-size: 11px;
+}

@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>회원가입</title>
+    <!-- http://postcode.map.daum.net/guide -->
+    <style>
+
+        h1 {
+            width: 80%;
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        #fffff {
+            margin-left: 8%;
+            color: #FF542A;
+        }
+
+        div {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        p {
+            width: 800px;
+            border-top: 1px solid #E2E2E2;
+            border-bottom: 1px solid #E2E2E2;
+            padding: 20px 0;
+            margin: 0 auto;
+        }
+
+        #oneone {
+            width: 80%;
+            margin: 20px auto 0 auto;
+        }
+
+        table {
+            width: 800px;
+            border-collapse: collapse;
+            margin: 0 auto;
+            border: none;
+        }
+
+        td {
+            border-top: 1px solid #E2E2E2;
+            padding: 10px 0 10px 10px;
+        }
+
+        table td.td1 {
+            width: 30%;
+            background-color: #F8F8F8;
+            font-size: 1em;
+        }
+
+        table td.td2 {
+            width: 70%;
+        }
+
+        span.asdf {
+            font-size: 14px;
+        }
+
+        #ml{
+            margin-left: 5px;
+        }
+        [id$="Info"]{
+            color: red;
+        }
+    </style>
+    <script>
+        function userIdCheck() {
+            const userId = document.querySelector("#userId");
+            const userIdInfo = document.querySelector("#userIdInfo");
+
+            if (userId.value === "")    {
+                userIdInfo.innerHTML = "필수입력사항입니다.";
+                return false;
+            } else{
+                userIdInfo.innerHTML = "";
+                return true;
+            }
+        }
+
+        function userIdButton() {
+            const userId = document.querySelector("#userId");
+
+            if (userId.value==="")  {
+                alert("아이디를 입력해주세요.");
+                userId.focus();
+                return false;
+            } else {
+                alert("사용가능한 아이디입니다.");
+                return true;
+            }
+        }
+
+        function userPwCheck(){
+            const userPw = document.querySelector("#userPw");
+            const userPwInfo = document.querySelector("#userPwInfo");
+
+            let exp = /^(?=.*[a-zA-Z])(?=.*[!@$%^&*])(?=.*[0-9]).{4,12}$/;
+
+            if (userPw.value.match(exp))    {
+                userPwInfo.innerHTML = "";
+                return true;
+            } else if (userPw.value === "") {
+                userPwInfo.innerHTML = "필수입력사항입니다.";
+                return false;
+            } else {
+                userPwInfo.innerHTML = "올바르지 않은 비밀번호입니다.";
+                return false;
+            }
+
+
+        }
+
+        function userPwOkCheck(){
+            const userPwOk = document.querySelector("#userPwOk");
+            const userPw = document.querySelector("#userPw");
+            const userPwOkInfo = document.querySelector("#userPwOkInfo");
+
+            if (userPwOk.value === userPw)  {
+                userPwOkInfo.innerHTML = "";
+                return true;
+            } else if (userPwOk.value === "")   {
+                userPwOkInfo.innerHTML = "필수입력사항입니다.";
+                return false;
+            } else {
+                userPwOkInfo.innerHTML = "비밀번호가 일치하지 않습니다.";
+                return false;
+            }
+        }
+        function userNameCheck() {
+            const userName = document.querySelector("#userName");
+            const userNameInfo = document.querySelector("#userNameInfo");
+
+            if (userName.value === "")  {
+                userNameInfo.innerHTML = "필수입력사항입니다.";
+                return false;
+            } else {
+                userNameInfo.innerHTML ="";
+                return true;
+            }
+        }
+
+        function userNameSpace() {
+            const userName = document.querySelector("#userName");
+            const userNameInfo = document.querySelector("#userNameInfo");
+
+            if (userName.value.includes(" "))   {
+                userNameInfo.innerHTML = "공백은 허용되지 않습니다.";
+                return false;
+            } else {
+                userNameInfo.innerHTML = "";
+                return true;
+            }
+        }
+
+        function userEmailCheck() {
+            const userEmail = document.querySelector("#userEmail");
+            const userEmailInfo = document.querySelector("#userEmailInfo");
+            let exp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
+
+            if (userEmail.value.match(exp)) {
+                userEmailInfo.innerHTML = "";
+                return true;
+            } else if (userEmail.value === "")  {
+                userEmailInfo.innerHTML = "필수입력사항입니다.";
+                return false;
+            } else  {
+                userEmail.innerHTML = "다시 입력해주세요.";
+                return false;
+            }
+        }
+
+        function postCodeCheck() {
+            const postCode = document.querySelector("#postCode");
+            const postCodeInfo = document.querySelector("#postCodeInfo");
+
+            if (postCode.value === "" || postCode.value === null)   {
+                postCodeInfo.innerHTML = "필수입력사항입니다.";
+                return false;
+            } else {
+                postCodeInfo.innerHTML = "";
+                return true;
+            }
+        }
+
+        function addressCheck() {
+            const address = document.querySelector("#address");
+            const detailAddress = document.querySelector("#detailAddress");
+            const addressInfo = document.querySelector("#addressInfo");
+
+            if (address.value === "" || address.value === null|| detailAddress.value === "" || detailAddress.value === null) {
+                addressInfo.innerHTML = "필수입력사항입니다.";
+                return false;
+            } else {
+                addressInfo.innerHTML = "";
+                return true;
+            }
+        }
+
+        function phoneCheck() {
+            const phone = document.querySelector("#phone");
+            const phoneInfo = document.querySelector("#phoneInfo");
+            let exp = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
+
+            if (phone.value.match(exp)) {
+                phoneInfo.innerHTML = "";
+                return true;
+            } else if (phone.value === "")  {
+                phoneInfo.innerHTML = "필수입력사항입니다."
+                return false;
+            } else {
+                phoneInfo.innerHTML = "다시 입력해주세요."
+                return false;
+            }
+        }
+
+        function allCheck(event){
+            if(userIdCheck() && userIdButton && userPwCheck() && userPwOkCheck() && userNameCheck() && userNameSpace
+                && userEmailCheck() && postCodeCheck() && addressCheck() && phoneCheck()){
+                alert("회원가입완료");
+                return true;
+            }else{
+                alert("가입내용이 문제가 있습니다. 점검해보세요.");
+                event.preventDefault();
+                return false;
+            }
+        }
+    </script>
+</head>
+<body>
+<h1>회원가입</h1>
+<div>
+    <span id="fffff">●</span><span><b>온라인 회원가입 작성</b></span>
+    <p>고객님의 정보는 개인정보보호정책에 의해 철저하게 보호됩니다.</p>
+</div>
+<form id="oneone" action="#" method="post" name="joinform">
+    <table>
+        <tr>
+            <td class="td1"><label for="userId"></label>사용자ID<span style="color: red ;font-size: 20px">*</span></td>
+            <td class="td2"><input type="text" name="userId" id="userId" required onblur="userIdCheck()"><input id="ml" type="button" value="ID 중복확인" onclick="userIdButton()"><br>
+                <span id="userIdInfo"></span></td>
+        </tr>
+        <tr>
+            <td class="td1"><label for="userPw"></label>비밀번호<span style="color: red ;font-size: 20px">*</span></td>
+            <td class="td2"><input type="password" name="userPw" id="userPw" maxlength="12" onkeyup="userPwCheck()" required><span class="asdf"> ·4~12자리의 영문,숫자,특수문자(!, @, $, %, ^, &,*)만 가능</span><br>
+                <span id="userPwInfo"></span>
+            </td>
+        </tr>
+        <tr>
+            <td class="td1"><label for="userPwOk">비밀번호 확인</label><span style="color: red ;font-size: 20px">*</span></td>
+            <td class="td2"><input type="password" name="userPwOk" id="userPwOk" maxlength="12" onkeyup="userPwOkCheck()" required><br>
+                <span id="userPwOkInfo"></span></td>
+        </tr>
+        <tr>
+            <td class="td1"><label for="userName"></label>성명<span style="color: red ;font-size: 20px">*</span></td>
+            <td class="td2"><input type="text" name="userName" id="userName" required onblur="userNameCheck()"><span class="asdf"> ·띄어쓰기 없이 입력, 반드시 실명이어야 합니다!</span><br>
+                <span id="userNameInfo"></span></td>
+        </tr>
+        <tr>
+            <td class="td1"><label for="userEmail"></label>E-mail<span style="color: red ;font-size: 20px">*</span>
+            </td>
+            <td class="td2"><input type="email" name="userEmail" id="userEmail" size="35" required onblur="userEmailCheck()">
+                <label for="ask"><input type="checkbox" name="ask" id="ask">
+                    <b>메일 수신여부</b></label><br>
+                <span class="asdf">·<b>할인 이벤트정보</b> 및 할인쿠폰, 관심분야 등 꼭 필요한 정보를 빠르게 받아보실 수 있습니다.</span><br>
+                <span class="asdf">·비밀번호 분실시 E-mail로 확인해 드리니, <span style="color:  #11797E"><b>정확한 E-mail주소를 기입</b></span>해주세요.</span><br>
+                <span id="userEmailInfo"></span>
+            </td>
+        </tr>
+        <tr>
+            <td class="td1"><label for="postCode"></label>우편번호<span style="color: red ;font-size: 20px">*</span></td>
+            <td class="td2"><input type="text" name="postCode" id="postCode" placeholder="우편번호" onblur="postCodeCheck()">
+                <input type="button" value="우편번호 찾기" onclick="execPostCode()"> <br>
+                <span id="postCodeInfo"></span></td>
+        </tr>
+        <tr>
+            <td class="td1"><label for="address">주소</label><span style="color: red ;font-size: 20px">*</span></td>
+            <td class="td2">
+                <input type="text" name="address" id="address" placeholder="주소" onblur="addressCheck()"><br>
+                <input type="text" name="detailAddress" id="detailAddress" placeholder="상세주소">
+                <input type="text" name="extraAddress" id="extraAddress" placeholder="참고항목"><br>
+                <span id="addressInfo"></span>
+            </td>
+        </tr>
+        <tr>
+            <td class="td1"><label for="phone">휴대폰번호</label><span style="color: red ;font-size: 20px">*</span></td>
+            <td class="td2"><input type="number" name="phone" id="phone" required onblur="phoneCheck()"><br>
+                <span id="phoneInfo"></span>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align: center; border: none">
+                <button type="submit" onclick="allCheck(event)">회원가입 신청</button>
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+    function execPostCode() {
+        new daum.Postcode({
+            oncomplete: function (data) {
+                var addr =";";
+                var extraAddr = "";
+
+                if (data.userSelectedType === "R")  {
+                    addr = data.roadAddress;
+                } else {
+                    addr = data.jibunAddress;
+                }
+
+                if (data.userSelectedType === "R")  {
+                    if (data.bname !== "" &&  /[동|로|가]$/g.test(data.bname)) {
+                        extraAddr += data.bname;
+                    }
+                    if (data.buildingName !== "" && data.apartment === "Y") {
+                        extraAddr += (extraAddr !== "" ? ", " + data.buildingName : data.buildingName);
+                    }
+                    if (extraAddr !== "")   {
+                        extraAddr = " (" + extraAddr + ")";
+                    }
+                    document.querySelector("#extraAddress").value = extraAddr;
+                } else {
+                    document.querySelector("#extraAddress").value = "";
+                }
+
+                document.querySelector("#postCode").value = data.zonecode;
+                document.querySelector("#address").value = addr;
+                document.querySelector("#detailAddress").focus();
+            }
+        }).open();
+    }
+</script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+    function execPostCode() {
+        new daum.Postcode({
+            oncomplete: function (data) {
+                var addr =";";
+                var extraAddr = "";
+
+                if (data.userSelectedType === "R")  {
+                    addr = data.roadAddress;
+                } else {
+                    addr = data.jibunAddress;
+                }
+
+                if (data.userSelectedType === "R")  {
+                    if (data.bname !== "" &&  /[동|로|가]$/g.test(data.bname)) {
+                        extraAddr += data.bname;
+                    }
+                    if (data.buildingName !== "" && data.apartment === "Y") {
+                        extraAddr += (extraAddr !== "" ? ", " + data.buildingName : data.buildingName);
+                    }
+                    if (extraAddr !== "")   {
+                        extraAddr = " (" + extraAddr + ")";
+                    }
+                    document.querySelector("#extraAddress").value = extraAddr;
+                } else {
+                    document.querySelector("#extraAddress").value = "";
+                }
+
+                document.querySelector("#postCode").value = data.zonecode;
+                document.querySelector("#address").value = addr;
+                document.querySelector("#detailAddress").focus();
+            }
+        }).open();
+    }
+</script>
+</html>
