@@ -6,7 +6,7 @@ public class Admin {
     private String id;
     private String password;
     public Admin() throws Exception {
-        String filePath = "src/controller/burger.properties";
+        String filePath = "BurgerDB2/src/controller/burger.properties";
         Properties properties = new Properties();
         properties.load(new FileReader(filePath));
 
