@@ -112,7 +112,7 @@ public class AdminDAO {
     public void deleteSide(int code)  {
 
         try(Connection con = DBUtil.getConnection();
-        CallableStatement csmt = con.prepareCall("{call delete_side(?)}")) {
+        CallableStatement csmt = con.prepareCall("{call get_all_burgers()}")) {
 
             con.setAutoCommit(false);
 

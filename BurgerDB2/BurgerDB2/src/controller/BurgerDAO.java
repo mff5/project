@@ -1,19 +1,17 @@
 package controller;
 
 import model.BurgerVO;
+import model.CartVO;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class BurgerDAO {
-    public void insertMyBurgers(BurgerVO bvo) {
-
-        String sql = "insert into myBurgers values (lpad(myBurgersNum.nextval,5,'0'),lpad(?,5,'0'),?,trim(to_char(?,'L999,999,999')),?)";
+    public void insertCart(BurgerVO bvo) {
 
         try(Connection con = DBUtil.getConnection();
-        PreparedStatement pstmt = con.prepareStatement(sql)) {
+        CallableStatement pstmt = con.prepareCall("{}")) {
 
             pstmt.setInt(1, bvo.getCode());
             pstmt.setString(2, bvo.getName());
@@ -45,19 +43,30 @@ public class BurgerDAO {
     public static ArrayList<BurgerVO> readBurgers() {
         ArrayList<BurgerVO> burgers = new ArrayList<>();
         try (Connection con = DBUtil.getConnection();
-             PreparedStatement pstmt = con.prepareStatement("SELECT * FROM burgers ORDER BY CODE");
-             ResultSet rs = pstmt.executeQuery()) {
+             CallableStatement cstmt = con.prepareCall("{call get_burgers(?)}")) {
 
+            cstmt.registerOutParameter(1, Types.REF_CURSOR);
 
+            cstmt.executeUpdate();
 
-            while (rs.next()) {
-                int code = Integer.parseInt(rs.getString("CODE"));
-                String name = rs.getString("NAME");
-                int price = Integer.parseInt(rs.getString("PRICE").trim().replaceAll("[^\\d.]", ""));
-                String info = rs.getString("INFO");
-                BurgerVO burger = new BurgerVO(code, name, price, info);
-                burgers.add(burger);
+            try {
+
             }
+
+
+            int burgerCode;
+            String burgerName;
+            int burgerPrice;
+            String burgerDescription;
+            String burgerCategory;
+            int burgerStock;
+            Date burgerCreatedAt;
+            Date burgerUpdatedAt;
+            int burgerCalories;
+            String burgerAllergy;
+
+
+
 
 
         } catch (Exception e) {
@@ -65,31 +74,5 @@ public class BurgerDAO {
             System.out.println("버거목록 읽기 예외 발생");
         }
         return burgers;
-    }
-    public static ArrayList<MyBurgerVO> readMyBurgers() {
-        ArrayList<MyBurgerVO> myBurgers = new ArrayList<>();
-        try (Connection con = DBUtil.getConnection();
-             PreparedStatement pstmt = con.prepareStatement("SELECT * FROM myBurgers ORDER BY orderNum");
-             ResultSet rs = pstmt.executeQuery()) {
-
-
-
-            while (rs.next()) {
-                int orderNum = Integer.parseInt(rs.getString("ORDERNUM"));
-                int code = Integer.parseInt(rs.getString("CODE"));
-                String name = rs.getString("NAME");
-                int price = Integer.parseInt(rs.getString("PRICE").trim().replaceAll("[^\\d.]", ""));
-                String info = rs.getString("INFO");
-
-                MyBurgerVO myBurger = new MyBurgerVO(orderNum,code, name, price, info);
-                myBurgers.add(myBurger);
-            }
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("카트 버거목록 읽기 예외 발생");
-        }
-        return myBurgers;
     }
 }
