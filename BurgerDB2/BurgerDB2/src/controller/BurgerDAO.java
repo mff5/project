@@ -46,24 +46,28 @@ public class BurgerDAO {
              CallableStatement cstmt = con.prepareCall("{call get_burgers(?)}")) {
 
             cstmt.registerOutParameter(1, Types.REF_CURSOR);
-
             cstmt.executeUpdate();
 
-            try {
-
+            try(ResultSet rs = (ResultSet) cstmt.getObject(1)) {
+                while (rs.next())   {
+                    int burgerCode = Integer.parseInt(rs.getString("burger_code"));
+                    String burgerName = rs.getString("burger_name");
+                    int burgerPrice = Integer.parseInt(rs.getString("burger_price").replaceAll("[^\\d]", ""));
+                    String burgerDescription = rs.getString("burger_description");
+                    String burgerCategory = rs.getString("burger_category");
+                    int burgerStock = Integer.parseInt(rs.getString("burger_stock").replaceAll("[^\\d]", ""));
+                    Date burgerCreatedAt = rs.getDate("burger_created_at");
+                    Date burgerUpdatedAt = rs.getDate("burger_updated_at");
+                    int burgerCalories = Integer.parseInt(rs.getString("burger_calories").replaceAll("[^\\d]", ""));
+                    String burgerAllergy = rs.getString("burger_allergy");
+                    BurgerVO burger = new BurgerVO(burgerCode, burgerName, burgerPrice, burgerDescription,
+                            burgerCategory, burgerStock, burgerCreatedAt, burgerUpdatedAt, burgerCalories,
+                            burgerAllergy);
+                    burgers.add(burger);
+                }
+            } catch (Exception e)   {
+                System.out.println("버거 목록 읽어오는중 오류 발생");
             }
-
-
-            int burgerCode;
-            String burgerName;
-            int burgerPrice;
-            String burgerDescription;
-            String burgerCategory;
-            int burgerStock;
-            Date burgerCreatedAt;
-            Date burgerUpdatedAt;
-            int burgerCalories;
-            String burgerAllergy;
 
 
 
