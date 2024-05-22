@@ -9,24 +9,24 @@ public class SideVO implements Serializable, Comparable<SideVO> {
     private String sideName;
     private int sidePrice;
     private String sideDescription;
-    private String category;
+    private String sideCategory;
     private int sideStock;
     private Date sideCreatedAt;
     private Date sideUpdatedAt;
     private int sideCalories;
-    private String sideAllergyInfo;
+    private String sideAllergy;
 
-    public SideVO(int sideCode, String sideName, int sidePrice, String sideDescription, String category, int sideStock, Date sideCreatedAt, Date sideUpdatedAt, int sideCalories, String sideAllergyInfo) {
+    public SideVO(int sideCode, String sideName, int sidePrice, String sideDescription, String sideCategory, int sideStock, Date sideCreatedAt, Date sideUpdatedAt, int sideCalories, String sideAllergyInfo) {
         this.sideCode = sideCode;
         this.sideName = sideName;
         this.sidePrice = sidePrice;
         this.sideDescription = sideDescription;
-        this.category = category;
+        this.sideCategory = sideCategory;
         this.sideStock = sideStock;
         this.sideCreatedAt = sideCreatedAt;
         this.sideUpdatedAt = sideUpdatedAt;
         this.sideCalories = sideCalories;
-        this.sideAllergyInfo = sideAllergyInfo;
+        this.sideAllergy = sideAllergyInfo;
     }
 
     public int getSideCode() {
@@ -62,11 +62,11 @@ public class SideVO implements Serializable, Comparable<SideVO> {
     }
 
     public String getCategory() {
-        return category;
+        return sideCategory;
     }
 
     public void setCategory(String category) {
-        this.category = category;
+        this.sideCategory = category;
     }
 
     public int getSideStock() {
@@ -102,11 +102,11 @@ public class SideVO implements Serializable, Comparable<SideVO> {
     }
 
     public String getSideAllergyInfo() {
-        return sideAllergyInfo;
+        return sideAllergy;
     }
 
     public void setSideAllergyInfo(String sideAllergyInfo) {
-        this.sideAllergyInfo = sideAllergyInfo;
+        this.sideAllergy = sideAllergyInfo;
     }
 
     @Override
@@ -129,12 +129,12 @@ public class SideVO implements Serializable, Comparable<SideVO> {
                 ", sideName='" + sideName + '\'' +
                 ", sidePrice=" + sidePrice +
                 ", sideDescription='" + sideDescription + '\'' +
-                ", category='" + category + '\'' +
+                ", category='" + sideCategory + '\'' +
                 ", sideStock=" + sideStock +
                 ", sideCreatedAt=" + sideCreatedAt +
                 ", sideUpdatedAt=" + sideUpdatedAt +
                 ", sideCalories=" + sideCalories +
-                ", sideAllergyInfo='" + sideAllergyInfo + '\'' +
+                ", sideAllergyInfo='" + sideAllergy + '\'' +
                 '}';
     }
 

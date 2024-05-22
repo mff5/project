@@ -78,18 +78,17 @@ public class AdminDAO {
     }
 
 
-    public void insertSide(int code, String name, int price){
+    public void insertSide(int sideCode, String sideName, int sidePrice, String sideDescription, String category,
+                           int sideStock, int sideCalories, String sideAllergy){
         String sql = "INSERT INTO sides VALUES (lpad(?,5,'0'), ?, trim(to_char(?,'L999,999,999')))";
 
         try(Connection con = DBUtil.getConnection();
-        PreparedStatement pstmt = con.prepareStatement(sql)) {
+        CallableStatement cstmt = con.prepareCall("{call insert_side(?,?,?,?,?,?,?,?)}")) {
 
-            pstmt.setInt(1, code);
-            pstmt.setString(2, name);
-            pstmt.setInt(3, price);
 
-            pstmt.executeUpdate();
-            System.out.println("사이드 목록에 "+code+"번 " +name+"이/가 추가되었습니다.");
+
+            cstmt.executeUpdate();
+            System.out.println("사이드 목록에 "+sideCode+"번 " +sideName+"이/가 추가되었습니다.");
         } catch (Exception e)   {
             System.out.println("사이드 목록 추가중 오류 발생");
         }
