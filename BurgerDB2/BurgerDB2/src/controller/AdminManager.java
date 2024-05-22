@@ -40,7 +40,7 @@ public class AdminManager {
             burgerCode = code;
             break;
         }
-        System.out.print("제품명을 입력해주세요: ");
+        System.out.print("버거명을 입력해주세요: ");
         String burgerName = sc.nextLine();
 
         System.out.print("가격을 입력해주세요: ");
@@ -52,12 +52,42 @@ public class AdminManager {
         int burgerPrice = sc.nextInt();
         sc.nextLine();
 
-        System.out.print("상품설명을 입력해주세요: ");
-        String burgerInfo = sc.nextLine();
+        System.out.print("버거설명을 입력해주세요: ");
+        String burgerDescription = sc.nextLine();
+
+        System.out.print("버거 카테고리를 입력해주세요: ");
+        String burgerCategory = sc.nextLine();
+
+        System.out.print("버거 재고를 입력해주세요: ");
+        while (!sc.hasNext("[1-9]\\d*")) {
+            sc.next();
+            System.out.println("숫자를 입력해주세요");
+            System.out.print("가격을 입력해주세요: ");
+        }
+        int burgerStock = sc.nextInt();
+        sc.nextLine();
+
+        System.out.print("버거 칼로리를 입력해주세요: ");
+        while (!sc.hasNext("[1-9]\\d*")) {
+            sc.next();
+            System.out.println("숫자를 입력해주세요");
+            System.out.print("가격을 입력해주세요: ");
+        }
+        int burgerCalories = sc.nextInt();
+        sc.nextLine();
+
+        System.out.print("버거 알레르기 정보를 입력해주세요: ");
+        String burgerAllergy = sc.nextLine();
 
         AdminDAO ad = new AdminDAO();
-        ad.insertBurger(burgerCode, burgerName, burgerPrice, burgerInfo);
+        ad.insertBurger(burgerCode, burgerName, burgerPrice, burgerDescription, burgerCategory, burgerStock,
+                burgerCalories, burgerAllergy);
     }
+
+
+
+
+
     public void modifyBurger()   {
         ArrayList<BurgerVO> burgers = BurgerDAO.readBurgers();
         if (burgers.isEmpty()) {
@@ -107,6 +137,12 @@ public class AdminManager {
         AdminDAO ad = new AdminDAO();
         ad.updateBurger(burgerCode, burgerName, burgerPrice, burgerInfo);
     }
+
+
+
+
+
+
     public void removeBurger()  {
         ArrayList<BurgerVO> burgers = BurgerDAO.readBurgers();
         if (burgers.isEmpty()) {
@@ -131,7 +167,7 @@ public class AdminManager {
                 return;
             }
 
-            if (burgers.stream().map(BurgerVO::getCode).toList().contains(code)) {
+            if (burgers.stream().anyMatch(b->b.getBurgerCode() == code)) {
                 burgerCode = code;
                 break;
             }
@@ -140,6 +176,17 @@ public class AdminManager {
         AdminDAO ad = new AdminDAO();
         ad.deleteBurger(burgerCode);
     }
+
+
+
+
+
+
+
+
+
+
+
     public void addSide()   {
         ArrayList<SideVO> sides = SideDAO.readSides();
         if (sides.isEmpty())    {
@@ -254,7 +301,7 @@ public class AdminManager {
                 return;
             }
 
-            if (sides.stream().map(SideVO::getCode).toList().contains(code)) {
+            if (sides.stream().anyMatch(s->s.getSideCode()==code)) {
                 sideCode = code;
                 break;
             }
