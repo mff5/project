@@ -113,7 +113,7 @@ public class AdminManager {
                 return;
             }
 
-            if (burgers.stream().map(BurgerVO::getCode).toList().contains(code)) {
+            if (burgers.stream().map(BurgerVO::getBurgerCode).toList().contains(code)) {
                 burgerCode = code;
                 break;
             }

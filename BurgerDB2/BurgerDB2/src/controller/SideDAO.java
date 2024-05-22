@@ -60,28 +60,4 @@ public class SideDAO {
         }
         return sides;
     }
-    public static ArrayList<MySideVO> readMySides()   {
-        ArrayList<MySideVO> mySides = new ArrayList<>();
-        try (Connection con = DBUtil.getConnection();
-             PreparedStatement pstmt = con.prepareStatement("SELECT * FROM mySides ORDER BY orderNum");
-             ResultSet rs = pstmt.executeQuery()) {
-
-
-
-            while (rs.next()) {
-                int orderNum = Integer.parseInt(rs.getString("ORDERNUM"));
-                int code = Integer.parseInt(rs.getString("CODE"));
-                String name = rs.getString("NAME");
-                int price = Integer.parseInt(rs.getString("PRICE").trim().replaceAll("[^\\d.]", ""));
-
-                MySideVO mySide = new MySideVO(orderNum,code, name, price);
-                mySides.add(mySide);
-            }
-
-
-        } catch (Exception e) {
-            System.out.println("카트 사이드목록 읽기 예외 발생");
-        }
-        return mySides;
-    }
 }
