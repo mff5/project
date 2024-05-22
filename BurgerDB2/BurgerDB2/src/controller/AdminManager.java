@@ -34,30 +34,60 @@ public class AdminManager {
                 return;
             }
 
-            if (burgers.stream().map(BurgerVO::getBurgerCode).toList().contains(code)) {
-                continue;
+            if (burgers.stream().noneMatch(s->s.getBurgerCode()==code)) {
+                burgerCode = code;
+                break;
             }
-            burgerCode = code;
-            break;
+
         }
-        System.out.print("제품명을 입력해주세요: ");
+        System.out.print("버거명을 입력해주세요: ");
         String burgerName = sc.nextLine();
 
-        System.out.print("가격을 입력해주세요: ");
+        System.out.print("버거 가격을 입력해주세요: ");
+        while (!sc.hasNext("[1-9]\\d*")) {
+            sc.next();
+            System.out.println("숫자를 입력해주세요");
+            System.out.print("버거 가격을 입력해주세요: ");
+        }
+        int burgerPrice = sc.nextInt();
+        sc.nextLine();
+
+        System.out.print("버거 설명을 입력해주세요: ");
+        String burgerDescription = sc.nextLine();
+
+        System.out.print("버거 카테고리를 입력해주세요: ");
+        String burgerCategory = sc.nextLine();
+
+        System.out.print("버거 재고를 입력해주세요: ");
         while (!sc.hasNext("[1-9]\\d*")) {
             sc.next();
             System.out.println("숫자를 입력해주세요");
             System.out.print("가격을 입력해주세요: ");
         }
-        int burgerPrice = sc.nextInt();
+        int burgerStock = sc.nextInt();
         sc.nextLine();
 
-        System.out.print("상품설명을 입력해주세요: ");
-        String burgerInfo = sc.nextLine();
+        System.out.print("버거 칼로리를 입력해주세요: ");
+        while (!sc.hasNext("[1-9]\\d*")) {
+            sc.next();
+            System.out.println("숫자를 입력해주세요");
+            System.out.print("가격을 입력해주세요: ");
+        }
+        int burgerCalories = sc.nextInt();
+        sc.nextLine();
+
+        System.out.print("버거 알레르기 정보를 입력해주세요: ");
+        String burgerAllergy = sc.nextLine();
 
         AdminDAO ad = new AdminDAO();
-        ad.insertBurger(burgerCode, burgerName, burgerPrice, burgerInfo);
+        ad.insertBurger(burgerCode, burgerName, burgerPrice, burgerDescription, burgerCategory, burgerStock,
+                burgerCalories, burgerAllergy);
     }
+
+
+
+
+
     public void modifyBurger()   {
         ArrayList<BurgerVO> burgers = BurgerDAO.readBurgers();
         if (burgers.isEmpty()) {
@@ -107,6 +137,12 @@ public class AdminManager {
         AdminDAO ad = new AdminDAO();
         ad.updateBurger(burgerCode, burgerName, burgerPrice, burgerInfo);
     }
+
+
+
+
+
+
     public void removeBurger()  {
         ArrayList<BurgerVO> burgers = BurgerDAO.readBurgers();
         if (burgers.isEmpty()) {
@@ -131,7 +167,7 @@ public class AdminManager {
                 return;
             }
 
-            if (burgers.stream().map(BurgerVO::getCode).toList().contains(code)) {
+            if (burgers.stream().anyMatch(b->b.getBurgerCode() == code)) {
                 burgerCode = code;
                 break;
             }
@@ -140,6 +176,17 @@ public class AdminManager {
         AdminDAO ad = new AdminDAO();
         ad.deleteBurger(burgerCode);
     }
+
+
+
+
+
+
+
+
+
+
+
     public void addSide()   {
         ArrayList<SideVO> sides = SideDAO.readSides();
         if (sides.isEmpty())    {
@@ -162,13 +209,13 @@ public class AdminManager {
             if (code == -1) {
                 return;
             }
-            if (sides.stream().map(SideVO::getCode).toList().contains(code)) {
-                continue;
+            if (sides.stream().noneMatch(s->s.getSideCode()==code)) {
+                sideCode = code;
+                break;
             }
-            sideCode = code;
-            break;
+
         }
-        System.out.print("제품명을 입력해주세요: ");
+        System.out.print("사이드명을 입력해주세요: ");
         String sideName = sc.nextLine();
 
         System.out.print("가격을 입력해주세요: ");
@@ -180,8 +227,36 @@ public class AdminManager {
         int sidePrice = sc.nextInt();
         sc.nextLine();
 
+        System.out.print("사이드 설명을 입력해주세요: ");
+        String sideDescription = sc.nextLine();
+
+        System.out.print("사이드 카테고리를 입력해주세요: ");
+        String sideCategory = sc.nextLine();
+
+        System.out.print("사이드 재고를 입력해주세요: ");
+        while (!sc.hasNext("[1-9]\\d*")) {
+            sc.next();
+            System.out.println("숫자를 입력해주세요");
+            System.out.print("가격을 입력해주세요: ");
+        }
+        int sideStock = sc.nextInt();
+        sc.nextLine();
+
+        System.out.print("사이드 칼로리를 입력해주세요: ");
+        while (!sc.hasNext("[1-9]\\d*")) {
+            sc.next();
+            System.out.println("숫자를 입력해주세요");
+            System.out.print("가격을 입력해주세요: ");
+        }
+        int sideCalories = sc.nextInt();
+        sc.nextLine();
+
+        System.out.print("사이드 알레르기 정보를 입력해주세요: ");
+        String sideAllergy = sc.nextLine();
+
         AdminDAO ad = new AdminDAO();
-        ad.insertSide(sideCode, sideName, sidePrice);
+        ad.insertSide(sideCode, sideName, sidePrice, sideDescription, sideCategory, sideStock, sideCalories,
+                sideAllergy);
     }
 
     public void modifySide()    {
@@ -254,7 +329,7 @@ public class AdminManager {
                 return;
             }
 
-            if (sides.stream().map(SideVO::getCode).toList().contains(code)) {
+            if (sides.stream().anyMatch(s->s.getSideCode()==code)) {
                 sideCode = code;
                 break;
             }

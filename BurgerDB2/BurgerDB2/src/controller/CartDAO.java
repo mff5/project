@@ -2,9 +2,12 @@ package controller;
 
 
 
+import model.CartVO;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-
+import java.sql.ResultSet;
+import java.util.ArrayList;
 
 
 public class CartDAO {
@@ -29,5 +32,28 @@ public class CartDAO {
         } catch (Exception e) {
             System.out.println("카트 비우기중 오류 발생");
         }
+    }
+    public static ArrayList<CartVO> readCart() {
+        ArrayList<CartVO> carts = new ArrayList<>();
+        try (Connection con = DBUtil.getConnection();
+             PreparedStatement pstmt = con.prepareStatement("SELECT * FROM myBurgers ORDER BY orderNum");
+             ResultSet rs = pstmt.executeQuery()) {
+
+            while (rs.next()) {
+                int cartCode = Integer.parseInt(rs.getString("CART_CODE"));
+                String productName = rs.getString("PRODUCT_NAME");
+                int price = Integer.parseInt(rs.getString("PRICE").trim().replaceAll("[^\\d]", ""));
+
+
+                CartVO cart = new CartVO(cartCode, productName, price);
+                carts.add(cart);
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("카트 버거목록 읽기 예외 발생");
+        }
+        return carts;
     }
 }

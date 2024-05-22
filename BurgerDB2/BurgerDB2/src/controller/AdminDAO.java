@@ -1,26 +1,40 @@
 package controller;
 
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
 
 
 public class AdminDAO {
-    public void insertBurger(int code, String name, int price, String info){
-
-        String sql = "INSERT INTO burgers VALUES (lpad(?,5,'0'), ?, trim(to_char(?,'L999,999,999')), ?)";
+    public void insertBurger(int burgerCode, String burgerName, int burgerPrice, String burgerDescription,
+                             String burgerCategory, int burgerStock, int burgerCalories, String burgerAllergy){
 
         try(Connection con = DBUtil.getConnection();
-            PreparedStatement pstmt = con.prepareStatement(sql)) {
+            CallableStatement cstmt = con.prepareCall("{call insert insert_burger(?,?,?,?,?,?,?,?)}")) {
 
-            pstmt.setInt(1, code);
-            pstmt.setString(2, name);
-            pstmt.setInt(3, price);
-            pstmt.setString(4, info);
+            con.setAutoCommit(false);
 
-            pstmt.executeUpdate();
-            System.out.println("버거 목록에 "+code+"번 " +name+"이/가 추가되었습니다.");
+            cstmt.setInt(1, burgerCode);
+            cstmt.setString(2, burgerName);
+            cstmt.setInt(3, burgerPrice);
+            cstmt.setString(4, burgerDescription);
+            cstmt.setString(5, burgerCategory);
+            cstmt.setInt(6, burgerStock);
+            cstmt.setInt(7, burgerCalories);
+            cstmt.setString(8, burgerAllergy);
+
+            if (cstmt.executeUpdate() == 1) {
+                con.commit();
+                System.out.println("버거 목록에 "+burgerCode+"번 "+burgerName+"이/가 추가되었습니다.");
+            } else {
+                con.rollback();
+                System.out.println("버거 목록에 "+burgerCode+"번 "+burgerName+"추가가 실패했습니다.");
+            }
+
+
+
         } catch (Exception e)   {
             System.out.println("버거 목록 추가중 오류 발생");
         }
@@ -44,32 +58,37 @@ public class AdminDAO {
         }
     }
     public void deleteBurger(int code)  {
-        String sql = "delete from burgers where code=lpad(?,5,'0')";
 
         try(Connection con = DBUtil.getConnection();
-            PreparedStatement pstmt = con.prepareStatement(sql)) {
-            pstmt.setInt(1, code);
+            CallableStatement cstmt = con.prepareCall("{call delete_burger(?)}")) {
+            con.setAutoCommit(false);
+            cstmt.setInt(1, code);
 
-            pstmt.executeUpdate();
-            System.out.println("버거 목록에서 "+code+"번 버거가 삭제되었습니다.");
+            if (cstmt.executeUpdate()==1)   {
+                con.commit();
+                System.out.println("버거 목록에서 "+code+"번 버거가 삭제되었습니다.");
+            } else {
+                con.rollback();
+                System.out.println("버거 목록에서 "+code+"번 버거 삭제가 실패했습니다.");
+            }
+
         } catch (Exception e)   {
             System.out.println("버거 목록 삭제중 오류 발생");
         }
     }
 
 
-    public void insertSide(int code, String name, int price){
+    public void insertSide(int sideCode, String sideName, int sidePrice, String sideDescription, String category,
+                           int sideStock, int sideCalories, String sideAllergy){
         String sql = "INSERT INTO sides VALUES (lpad(?,5,'0'), ?, trim(to_char(?,'L999,999,999')))";
 
         try(Connection con = DBUtil.getConnection();
-        PreparedStatement pstmt = con.prepareStatement(sql)) {
+        CallableStatement cstmt = con.prepareCall("{call insert_side(?,?,?,?,?,?,?,?)}")) {
 
-            pstmt.setInt(1, code);
-            pstmt.setString(2, name);
-            pstmt.setInt(3, price);
 
-            pstmt.executeUpdate();
-            System.out.println("사이드 목록에 "+code+"번 " +name+"이/가 추가되었습니다.");
+
+            cstmt.executeUpdate();
+            System.out.println("사이드 목록에 "+sideCode+"번 " +sideName+"이/가 추가되었습니다.");
         } catch (Exception e)   {
             System.out.println("사이드 목록 추가중 오류 발생");
         }
@@ -91,14 +110,22 @@ public class AdminDAO {
         }
     }
     public void deleteSide(int code)  {
-        String sql = "DELETE FROM sides WHERE code =lpad(?,5,'0')";
 
         try(Connection con = DBUtil.getConnection();
-        PreparedStatement psmt = con.prepareStatement(sql)) {
-            psmt.setInt(1, code);
+        CallableStatement csmt = con.prepareCall("{call get_all_burgers()}")) {
 
-            psmt.executeUpdate();
-            System.out.println("사이드 목록에서 "+code+"번 사이드가 삭제되었습니다.");
+            con.setAutoCommit(false);
+
+            csmt.setInt(1, code);
+
+            if (csmt.executeUpdate() == 1)  {
+                con.commit();
+                System.out.println("사이드 목록에서 "+code+"번 사이드가 삭제되었습니다.");
+            } else {
+                con.rollback();
+                System.out.println("사이드 목록에서 "+code+"번 사이드 삭제가 실패했습니다.");
+            }
+
         } catch (Exception e)   {
             System.out.println("사이드 목록 삭제중 오류 발생");
         }
